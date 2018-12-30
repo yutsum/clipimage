@@ -11,7 +11,9 @@ wrk$clip;
 addDockedCell::usage = "addDockedCell; add a docked cell with a copy button";
 
 
-Begin["`Private`"]
+Begin["`Private`"];
+
+Clear["`*"];
 (* Implementation of the package *)
 (*
 	CopyToClipboard doesn't work well if the graphics is very large
@@ -22,26 +24,27 @@ LoadNETAssembly["PresentationCore"];
 LoadNETType["System.Windows.Clipboard"] ;
 LoadNETType["System.Windows.Media.Imaging.BitmapCacheOption"] ;
 
-const$wide = 4000;
+const$mag = 2;
 const$res = 600;
+g$wide = 4000;
 
-clipimage[gr_Cell] := wrk$clipimage@Module[{sz, rgr},
-	sz = CurrentValue[gr, ImageSize];
-	If[MatchQ[sz, $Failed], sz = {Automatic, Automatic}];
-	rgr = Rasterize[MapAt[Append[#, ImageSize -> sz] &, gr,
-		Position[gr, GraphicsBox[{Except[_RasterBox], ___}, ___] (* except Legend *)
-			, Infinity]],
-		Background -> White, ImageResolution -> const$res, ImageFormattingWidth -> const$wide];
-	rgr
+(* if cell is given, user is selecting a cell (object) *)
+clipimage[gr_Cell] := Module[{},
+	g$wide = const$mag AbsoluteOptions[First[SelectedCells[]], CellSize][[1, 2, 1]];
+	wrk$clipimage[First[gr]];
 ];
+clipimage[gr_] := wrk$clipimage[gr];
 
 (* Magnify is used instead of Resolution specification because High Resolution rasterization
 	makes the axis to thin *)
-	
-clipimage[gr_] := wrk$clipimage[
-	Rasterize[Magnify[ToExpression@gr, 2], Background -> White, ImageFormattingWidth -> const$wide]];
+wrk$clipimage[gr_GraphicsBox | gr_BoxData | gr_TemplateBox | gr_TagBox | gr_?boxQ] := wrk$printing[
+	Rasterize[Magnify[ToExpression@gr, const$mag], Background -> White, ImageFormattingWidth -> g$wide]];
+wrk$clipimage[gr_Graphics] := wrk$printing[
+	Rasterize[Magnify[gr, const$mag], Background -> White, ImageFormattingWidth -> g$wide]];
+wrk$clipimage[gr_] := wrk$printing[
+	Rasterize[Magnify[ToExpression@gr, const$mag], Background -> White, ImageFormattingWidth -> g$wide]];
 
-wrk$clipimage[gr_] := Module[{file, filepng},
+wrk$printing[gr_] := Module[{file, filepng},
 	file = CreateFile[];
 	filepng = file <> ".png";
 	RenameFile[file, filepng];
@@ -72,6 +75,11 @@ addDockedCell :=
 
 CurrentValue[EvaluationNotebook[], DockedCells] = addDockedCell;
     
+boxQ[x_] /; 
+  MatchQ[Head[x], _Symbol] \[And] 
+   StringContainsQ[SymbolName@Head[x], "Box" ~~ EndOfString] := True
+boxQ[x_] := False
+
 End[]
 
 EndPackage[]
