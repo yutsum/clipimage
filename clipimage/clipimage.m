@@ -38,8 +38,6 @@ clipimage[gr_] := wrk$clipimage[gr];
 	makes the axis to thin *)
 wrk$clipimage[gr_GraphicsBox | gr_BoxData | gr_TemplateBox | gr_TagBox | gr_?boxQ] := wrk$printing[
 	Rasterize[Magnify[ToExpression@gr, const$mag], Background -> White, ImageFormattingWidth -> g$wide]];
-wrk$clipimage[gr_Graphics] := wrk$printing[
-	Rasterize[Magnify[gr, const$mag], Background -> White, ImageFormattingWidth -> g$wide]];
 wrk$clipimage[gr_] := wrk$printing[
 	Rasterize[Magnify[gr, const$mag], Background -> White, ImageFormattingWidth -> g$wide]];
 
