@@ -25,7 +25,6 @@ LoadNETType["System.Windows.Clipboard"] ;
 LoadNETType["System.Windows.Media.Imaging.BitmapCacheOption"] ;
 
 const$mag = 2;
-const$res = 600;
 g$wide = 4000;
 
 (* if cell is given, user is selecting a cell (object) *)
@@ -42,7 +41,7 @@ wrk$clipimage[gr_GraphicsBox | gr_BoxData | gr_TemplateBox | gr_TagBox | gr_?box
 wrk$clipimage[gr_Graphics] := wrk$printing[
 	Rasterize[Magnify[gr, const$mag], Background -> White, ImageFormattingWidth -> g$wide]];
 wrk$clipimage[gr_] := wrk$printing[
-	Rasterize[Magnify[ToExpression@gr, const$mag], Background -> White, ImageFormattingWidth -> g$wide]];
+	Rasterize[Magnify[gr, const$mag], Background -> White, ImageFormattingWidth -> g$wide]];
 
 wrk$printing[gr_] := Module[{file, filepng},
 	file = CreateFile[];
@@ -62,7 +61,6 @@ wrk$clip[fpath_] := Module[{uri, obj},
 		obj@UriSource = uri;
 		obj@CacheOption = System`Windows`Media`Imaging`BitmapCacheOption`OnLoad;
 		obj@EndInit[];
-		(* To load Clipboard class *)
 		System`Windows`Clipboard`SetData["Bitmap", obj];
 	]
 ];
