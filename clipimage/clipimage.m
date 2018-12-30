@@ -8,6 +8,7 @@ BeginPackage["clipimage`", {"NETLink`"}]
 (* Exported symbols added here with SymbolName::usage *) 
 clipimage::usage = "clipimage[<graphics>] copies the high resolution graphics to the system clipboard";
 wrk$clip;
+addDockedCell::usage = "addDockedCell; add a docked cell with a copy button";
 
 
 Begin["`Private`"]
@@ -21,13 +22,30 @@ LoadNETAssembly["PresentationCore"];
 LoadNETType["System.Windows.Clipboard"] ;
 LoadNETType["System.Windows.Media.Imaging.BitmapCacheOption"] ;
 
-clipimage[gr_Graphics] := Module[{file, filepng},
+const$wide = 4000;
+const$res = 600;
+
+clipimage[gr_Cell] := wrk$clipimage@Module[{sz, rgr},
+	sz = CurrentValue[gr, ImageSize];
+	If[MatchQ[sz, $Failed], sz = {Automatic, Automatic}];
+	rgr = Rasterize[MapAt[Append[#, ImageSize -> sz] &, gr,
+		Position[gr, GraphicsBox[{Except[_RasterBox], ___}, ___] (* except Legend *)
+			, Infinity]],
+		Background -> White, ImageResolution -> const$res, ImageFormattingWidth -> const$wide];
+	rgr
+];
+
+(* Magnify is used instead of Resolution specification because High Resolution rasterization
+	makes the axis to thin *)
+	
+clipimage[gr_] := wrk$clipimage[
+	Rasterize[Magnify[ToExpression@gr, 2], Background -> White, ImageFormattingWidth -> const$wide]];
+
+wrk$clipimage[gr_] := Module[{file, filepng},
 	file = CreateFile[];
 	filepng = file <> ".png";
 	RenameFile[file, filepng];
-	(* High resolution makes Axis too thin *)
-	(* Export[filepng, gr, ImageResolution -> 300]; *)
-	Export[filepng, Magnify[gr,2]];
+	Export[filepng, gr];
 	wrk$clip[filepng];
 	DeleteFile[filepng];
 ];
@@ -46,7 +64,14 @@ wrk$clip[fpath_] := Module[{uri, obj},
 	]
 ];
 
+addDockedCell := 
+ Cell[BoxData[
+   ButtonBox["\"CopyGraphics\"", Appearance -> Automatic, 
+    ButtonFunction :> clipimage[NotebookRead[InputNotebook[]]], 
+    Evaluator -> Automatic, Method -> "Preemptive"]]];
 
+CurrentValue[EvaluationNotebook[], DockedCells] = addDockedCell;
+    
 End[]
 
 EndPackage[]

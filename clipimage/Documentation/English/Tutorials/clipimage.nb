@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     28191,        599]
-NotebookOptionsPosition[     23879,        507]
-NotebookOutlinePosition[     24298,        523]
-CellTagsIndexPosition[     24255,        520]
+NotebookDataLength[     29012,        617]
+NotebookOptionsPosition[     24645,        523]
+NotebookOutlinePosition[     25064,        539]
+CellTagsIndexPosition[     25021,        536]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -119,14 +119,48 @@ graphics.\
  CellChangeTimes->{{3.7550202398704042`*^9, 3.755020389246246*^9}},
  CellID->1534169418,ExpressionUUID->"21a7d551-67b3-4813-a5be-576d89ee017f"],
 
+Cell[CellGroupData[{
+
+Cell["Basic Usage", "Subsection",
+ CellChangeTimes->{{3.75513585558764*^9, 3.755135874501898*^9}, 
+   3.755135923439337*^9},
+ CellID->815811356,ExpressionUUID->"83ac24c0-dbdc-4d09-a56b-9e364f0d6a60"],
+
+Cell["\<\
+1. Import the package, and then DockedCell with a \"CopyGraphics\" button \
+will appear at the top of the notebook.\
+\>", "Text",
+ CellChangeTimes->{{3.755136597836585*^9, 3.7551366086440744`*^9}},
+ CellID->521462545,ExpressionUUID->"9245a528-f205-4d0b-8d07-6c03919c7157"],
+
+Cell["\<\
+2. Select a graphics or cell in the notebook to copy and push the button.\
+\>", "Text",
+ CellChangeTimes->{{3.755135928372637*^9, 3.755136041154381*^9}, {
+  3.7551366487014694`*^9, 3.7551366552640986`*^9}},
+ CellID->266221393,ExpressionUUID->"d8a2efb2-e620-4791-936c-28b438531276"],
+
+Cell["3. Paste into any application.", "Text",
+ CellChangeTimes->{{3.755135928372637*^9, 3.7551360589635525`*^9}},
+ CellID->14276199,ExpressionUUID->"1c98bed9-3b78-4e9d-9779-2a6d130f241c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Functions", "Subsection",
+ CellChangeTimes->{{3.75513585558764*^9, 3.7551358826183653`*^9}, {
+   3.755136567485097*^9, 3.7551365857613907`*^9}, 3.7551366597320433`*^9},
+ CellID->311171535,ExpressionUUID->"22b0c9c3-dbe7-4064-a918-4bcaf2d40e05"],
+
 Cell[BoxData[GridBox[{
    {
-    RowBox[{"clipimage", "[", "gr", "]"}], Cell[
-    "High resolution graphics gr is copied to system clipboard", "TableText",
-     ExpressionUUID->"c7f4db61-af63-4095-94b9-84fc2e4b8068"]}
+    RowBox[{"clipimage", "[", "gr", "]"}], Cell["\<\
+Graphics or cell gr is copied to system clipboard with high resolution\
+\>", "TableText",ExpressionUUID->"c7f4db61-af63-4095-94b9-84fc2e4b8068"]}
   }]], "DefinitionBox",
  CellChangeTimes->{{3.7550198027487884`*^9, 3.7550198610216*^9}, {
-  3.7550204059115367`*^9, 3.75502040702997*^9}},
+  3.7550204059115367`*^9, 3.75502040702997*^9}, {3.7551359030840745`*^9, 
+  3.755135919763976*^9}},
  CellID->2096742444,ExpressionUUID->"03410645-4b5d-4af6-8027-df858f4b21b2"],
 
 Cell["", "Caption",
@@ -135,13 +169,14 @@ Cell["", "Caption",
 
 Cell[CellGroupData[{
 
-Cell["clipimage example", "MathCaption",
+Cell["example", "MathCaption",
  CellChangeTimes->{{3.7550198877470293`*^9, 3.7550198893397217`*^9}, {
-  3.7550203973493347`*^9, 3.7550203995664062`*^9}},
+   3.7550203973493347`*^9, 3.7550203995664062`*^9}, 3.755136621826338*^9},
  CellID->836781195,ExpressionUUID->"6447121b-f2ba-4acf-b0af-d5a4e0b64b80"],
 
 Cell[BoxData[
- RowBox[{"Needs", "[", "\"\<clipimage`\>\"", "]"}]], "Input",
+ RowBox[{"<<", "clipiamge`"}]], "Input",
+ CellChangeTimes->{{3.755136611358047*^9, 3.7551366147299895`*^9}},
  CellLabel->"In[3]:=",
  CellID->60831069,ExpressionUUID->"98272441-d8a2-4a82-a339-1e9fec8ebcf3"],
 
@@ -482,26 +517,7 @@ AAAAAAAA4v/2M1Fl
   ImageSizeRaw->{360, 201},
   PlotRange->{{0, 360}, {0, 201}}]], "Input",
  CellID->813990991,ExpressionUUID->"88f2c0fb-92a0-4578-b33e-271300f42c6d"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["More About", "TutorialMoreAboutSection",
- CellID->23220180,ExpressionUUID->"3b04bd33-085a-4f74-b237-c7db7150f178"],
-
-Cell["-", "TutorialMoreAbout",
- CellChangeTimes->{3.7550204149079494`*^9},
- CellID->1567025153,ExpressionUUID->"6c07253c-46d2-42df-843e-ab4569bf85b5"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["Related Tutorials", "RelatedTutorialsSection",
- CellID->415694126,ExpressionUUID->"0b533bdc-52fe-46bc-841c-992f4f2f83af"],
-
-Cell["-", "RelatedTutorials",
- CellChangeTimes->{{3.755020417046232*^9, 3.755020419602425*^9}},
- CellID->806871991,ExpressionUUID->"99666546-22f8-4987-9639-d39c8b88beb9"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
@@ -568,37 +584,39 @@ Cell[3405, 110, 101, 1, 105, "Title",ExpressionUUID->"651f5234-ae4a-4804-836e-a7
  CellID->509267359],
 Cell[3509, 113, 331, 6, 36, "Text",ExpressionUUID->"21a7d551-67b3-4813-a5be-576d89ee017f",
  CellID->1534169418],
-Cell[3843, 121, 432, 8, 41, "DefinitionBox",ExpressionUUID->"03410645-4b5d-4af6-8027-df858f4b21b2",
+Cell[CellGroupData[{
+Cell[3865, 123, 199, 3, 38, "Subsection",ExpressionUUID->"83ac24c0-dbdc-4d09-a56b-9e364f0d6a60",
+ CellID->815811356],
+Cell[4067, 128, 282, 5, 36, "Text",ExpressionUUID->"9245a528-f205-4d0b-8d07-6c03919c7157",
+ CellID->521462545],
+Cell[4352, 135, 291, 5, 21, "Text",ExpressionUUID->"d8a2efb2-e620-4791-936c-28b438531276",
+ CellID->266221393],
+Cell[4646, 142, 188, 2, 21, "Text",ExpressionUUID->"1c98bed9-3b78-4e9d-9779-2a6d130f241c",
+ CellID->14276199]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4871, 149, 249, 3, 38, "Subsection",ExpressionUUID->"22b0c9c3-dbe7-4064-a918-4bcaf2d40e05",
+ CellID->311171535],
+Cell[5123, 154, 493, 9, 55, "DefinitionBox",ExpressionUUID->"03410645-4b5d-4af6-8027-df858f4b21b2",
  CellID->2096742444],
-Cell[4278, 131, 163, 2, 27, "Caption",ExpressionUUID->"b02dad24-0057-458a-935e-b404c5fc871e",
+Cell[5619, 165, 163, 2, 27, "Caption",ExpressionUUID->"b02dad24-0057-458a-935e-b404c5fc871e",
  CellID->1891092685],
 Cell[CellGroupData[{
-Cell[4466, 137, 238, 3, 38, "MathCaption",ExpressionUUID->"6447121b-f2ba-4acf-b0af-d5a4e0b64b80",
+Cell[5807, 171, 251, 3, 38, "MathCaption",ExpressionUUID->"6447121b-f2ba-4acf-b0af-d5a4e0b64b80",
  CellID->836781195],
-Cell[4707, 142, 172, 3, 25, "Input",ExpressionUUID->"98272441-d8a2-4a82-a339-1e9fec8ebcf3",
+Cell[6061, 176, 219, 4, 25, "Input",ExpressionUUID->"98272441-d8a2-4a82-a339-1e9fec8ebcf3",
  CellID->60831069],
 Cell[CellGroupData[{
-Cell[4904, 149, 418, 10, 25, "Input",ExpressionUUID->"bd1243de-5e90-4c7b-a12e-02249068255f",
+Cell[6305, 184, 418, 10, 25, "Input",ExpressionUUID->"bd1243de-5e90-4c7b-a12e-02249068255f",
  CellID->2058623809],
-Cell[5325, 161, 10530, 191, 145, "Output",ExpressionUUID->"79bd44dc-c441-4503-8cfe-8782caf6d96b",
+Cell[6726, 196, 10530, 191, 112, "Output",ExpressionUUID->"79bd44dc-c441-4503-8cfe-8782caf6d96b",
  CellID->48497610]
 }, Open  ]],
-Cell[15870, 355, 286, 6, 25, "Input",ExpressionUUID->"2c2b5f6b-22a5-4817-a9a8-fadd8a76a209",
+Cell[17271, 390, 286, 6, 25, "Input",ExpressionUUID->"2c2b5f6b-22a5-4817-a9a8-fadd8a76a209",
  CellID->218530737],
-Cell[16159, 363, 7045, 120, 212, "Input",ExpressionUUID->"88f2c0fb-92a0-4578-b33e-271300f42c6d",
+Cell[17560, 398, 7045, 120, 212, "Input",ExpressionUUID->"88f2c0fb-92a0-4578-b33e-271300f42c6d",
  CellID->813990991]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[23241, 488, 120, 1, 70, "TutorialMoreAboutSection",ExpressionUUID->"3b04bd33-085a-4f74-b237-c7db7150f178",
- CellID->23220180],
-Cell[23364, 491, 150, 2, 20, "TutorialMoreAbout",ExpressionUUID->"6c07253c-46d2-42df-843e-ab4569bf85b5",
- CellID->1567025153]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[23551, 498, 127, 1, 70, "RelatedTutorialsSection",ExpressionUUID->"0b533bdc-52fe-46bc-841c-992f4f2f83af",
- CellID->415694126],
-Cell[23681, 501, 170, 2, 20, "RelatedTutorials",ExpressionUUID->"99666546-22f8-4987-9639-d39c8b88beb9",
- CellID->806871991]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }
